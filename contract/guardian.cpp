@@ -5,14 +5,18 @@ using namespace eosio;
 /*
   Test this contract
 
-cleos push action eosguardians hi '["eosguardians"]' -p eosguardians@active
-cleos push action eosguardians upsertrecord '["eosguardians"]' -p eosguardians@active
-cleos push action eosguardians deleterecord '["eosguardians"]' -p eosguardians@active
-cleos push action eosguardians readrecord '["eosguardians"]' -p eosguardians@active
+cleos wallet unlock --password PW5K4EJaofnfmcQzSttnDYkae6ifTTFzdt339hs5kRE6xzuC2LkWi
 
-cleos push action eosguardians requestacces '["eosguardians"]' -p eosguardians@active
-cleos push action eosguardians grantaccess '["eosguardians"]' -p eosguardians@active
-cleos push action eosguardians revokeaccess '["eosguardians"]' -p eosguardians@active
+eosiocpp -o /work/guardian/guardian.wast /work/guardian/guardian.cpp
+eosiocpp -g /work/guardian/guardian.abi /work/guardian/guardian.cpp
+cleos set contract eosguardians /work/guardian/ --permission eosguardians
+
+cleos push action eosguardians upsertrecord '["testuser1","emergencymed","somehash"]' -p testuser1@active
+cleos push action eosguardians deleterecord '["testuser1","emergencymed"]' -p testuser1@active
+cleos push action eosguardians readrecord '["testuser1","emergencymed","testuser2"]' -p testuser2@active
+cleos push action eosguardians requestacces '["testuser1","emergencymed","testuser2"]' -p testuser2@active
+cleos push action eosguardians grantaccess '["testuser1","emergencymed","testuser2"]' -p testuser1@active
+cleos push action eosguardians revokeaccess '["testuser1","emergencymed","testuser2"]' -p testuser1@active
 
  */
 
@@ -26,40 +30,48 @@ public:
         print( "Hello, ", name{user} );
     }
 
+    // const account_name owner, const account_name key, const std::string msg
+    // cleos push action eosguardians upsertrecord '["testuser1","emergencymed","somehash"]' -p testuser1@active
+    // Hack using account_name for key
     /// @abi action
-    void upsertrecord( account_name user ) {
+    void upsertrecord( const account_name user, const account_name key, const std::string msg ) {
         require_auth( user );
-        print( "upsertrecord, ", name{user} );
+        print( "upsertrecord, ", name{user}, ", ", name{key}, ", ", msg );
     }
 
+    // cleos push action eosguardians deleterecord '["testuser1","emergencymed"]' -p testuser1@active
     /// @abi action
-    void deleterecord( account_name user ) {
+    void deleterecord( const account_name user, const account_name key ) {
         require_auth( user );
-        print( "deleterecord, ", name{user} );
+        print( "deleterecord, ", name{user}, ", ", name{key} );
     }
 
+    // cleos push action eosguardians readrecord '["testuser1","emergencymed","testuser1"]' -p testuser1@active
     /// @abi action
-    void readrecord( account_name user ) {
-        require_auth( user );
-        print( "readrecord, ", name{user} );
+    void readrecord( const account_name user, const account_name key, const account_name requestor ) {
+        require_auth( requestor );
+        print( "readrecord, ", name{user}, ", ", name{key}, ", ", name{requestor} );
     }
 
+    // cleos push action eosguardians requestacces '["testuser1","emergencymed","testuser2"]' -p testuser2@active
     /// @abi action
-    void requestacces( account_name user ) {
-        require_auth( user );
-        print( "requestacces, ", name{user} );
+    void requestacces( const account_name user, const account_name key, const account_name requestor ) {
+        require_auth( requestor );
+        print( "requestacces, ", name{user}, ", ", name{key}, ", ", name{requestor} );
     }
 
+    // cleos push action eosguardians grantaccess '["testuser1","emergencymed","testuser2"]' -p testuser2@active
     /// @abi action
-    void grantaccess( account_name user ) {
+    void grantaccess( const account_name user, const account_name key, const account_name requestor ) {
         require_auth( user );
-        print( "grantaccess, ", name{user} );
+        print( "grantaccess, ", name{user}, ", ", name{key}, ", ", name{requestor} );
     }
 
+    // cleos push action eosguardians revokeaccess '["testuser1","emergencymed","testuser2"]' -p testuser2@active
     /// @abi action
-    void revokeaccess( account_name user ) {
+    void revokeaccess( const account_name user, const account_name key, const account_name requestor ) {
         require_auth( user );
-        print( "revokeaccess, ", name{user} );
+        print( "revokeaccess, ", name{user}, ", ", name{key}, ", ", name{requestor} );
     }
 
 };

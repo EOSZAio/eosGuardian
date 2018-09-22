@@ -107,25 +107,65 @@ docker logs -f nodeos
 
 ####upsertrecord
 
+Permission : user
+
 | Field | Description |
 | ------------- | --------------|
-| owner | EOS account name of data owner |
+| user | EOS account name of data owner |
 | key | Data key |
 | hash | Hash or index of data stored off-chain |
 
 
 ####deleterecord
 
+Permission : user
+
+| Field | Description |
+| ------------- | --------------|
+| user | EOS account name of data owner |
+| key | Data key |
+
 ####readrecord
+
+Permission : requestor
+
+| Field | Description |
+| ------------- | --------------|
+| user | EOS account name of data owner |
+| key | Data key |
+| requestor | EOS account of party requesting data |
 
 ####requestacces
 
 NB Check spelling (1 's')
 
+Permission : requestor
+
+| Field | Description |
+| ------------- | --------------|
+| user | EOS account name of data owner |
+| key | Data key |
+| requestor | EOS account of party requesting data |
+
 ####grantaccess
+
+Permission : user
+
+| Field | Description |
+| ------------- | --------------|
+| user | EOS account name of data owner |
+| key | Data key |
+| requestor | EOS account of party requesting data |
 
 ####revokeaccess
 
+Permission : user
+
+| Field | Description |
+| ------------- | --------------|
+| user | EOS account name of data owner |
+| key | Data key |
+| requestor | EOS account of party requesting data |
 
 
 

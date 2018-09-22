@@ -6,10 +6,11 @@ import { Card, CardSection } from './common';
 class ViewNotification extends Component {
   renderNotification(data) {
     return (
+      <View>
         <Text>Access requested by: {data.access}</Text>
         <Text>Date from: {data.datefrom}</Text>
         <Text>Date to: {data.dateto}</Text>
-        <Text> </Text>
+        <Text />
         <Text>ID Number: {data.idnumber}</Text>
         <Text>Name: {data.name}</Text>
         <Text>Surname: {data.surname}</Text>
@@ -22,6 +23,7 @@ class ViewNotification extends Component {
         <Text>Blood Group: {data.bloodgroup}</Text>
         <Text>Any known pre-existing medical conditions: {data.conditions}</Text>
         <Text>Doctors Name: {data.doctor}</Text>
+      </View>
     );
   }
 

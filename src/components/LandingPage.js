@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { Button, CardSection, Card } from './common/';
 import { Actions } from 'react-native-router-flux';
 import { getInfo, transaction } from '../utils/eosjs-client';
+import ViewNotification from './ViewNotification';
 
 class LandingPage extends Component {
     onGrantPress() {
@@ -12,15 +13,19 @@ class LandingPage extends Component {
     }
 
     onRevokePress() {
-        
+
     }
 
     onAuditPress() {
-        
+
     }
 
     componentWillMount() {
-    
+
+    }
+
+    onTest() {
+      Actions.ViewNotification();
     }
 
     render() {
@@ -41,6 +46,12 @@ class LandingPage extends Component {
             <CardSection>
                 <Button onPress={this.onAuditPress.bind(this)}>
                     Audit Summary
+                </Button>
+            </CardSection>
+
+            <CardSection>
+                <Button onPress={this.onTest.bind(this)}>
+                    Test
                 </Button>
             </CardSection>
         </View>

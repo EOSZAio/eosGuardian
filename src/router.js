@@ -3,16 +3,16 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import LandingPage from './components/LandingPage';
 import GrantAccess from './components/GrantAccess';
-
+import ViewNotification from './components/ViewNotification';
 
 const RouterComponent = () => {
     return (
         <Router>
             <Scene key='root' hideNavBar>
                 <Scene key="auth">
-                    <Scene 
-                        key="login" 
-                        component={LoginForm} 
+                    <Scene
+                        key="login"
+                        component={LoginForm}
                         title="Please Login"
                         initial
                     />
@@ -30,6 +30,13 @@ const RouterComponent = () => {
                         //onRight={() => Actions.addAccount()}
                         component={GrantAccess}
                         title="Grant Access"
+                    />
+
+                    <Scene key="ViewNotification"
+                        //rightTitle="Add"
+                        //onRight={() => Actions.addAccount()}
+                        component={ViewNotification}
+                        title="Notification"
                     />
 
                 </Scene>

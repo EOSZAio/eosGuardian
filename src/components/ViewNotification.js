@@ -5,34 +5,29 @@ import { Card, CardSection } from './common';
 
 class ViewNotification extends Component {
   renderNotification(data) {
-    Object.keys(data).forEach((key) => {
-        //return <Text>{key}+': '+{data[key]}</Text>;
-        console.log(key);
-        return (
-          <CardSection>
-          <Text>aadskldfjkfd</Text>
-          </CardSection>);
-        console.log('la');
-    });
-
-    //for (var key in data) {
-    // check if the property/key is defined in the object itself, not in parent
-    //  return <Text>a</Text>;
-    //}
+    return (
+        <Text>Access requested by: {data.access}</Text>
+        <Text>Date from: {data.datefrom}</Text>
+        <Text>Date to: {data.dateto}</Text>
+        <Text> </Text>
+        <Text>ID Number: {data.idnumber}</Text>
+        <Text>Name: {data.name}</Text>
+        <Text>Surname: {data.surname}</Text>
+        <Text>Gender: {data.gender}</Text>
+        <Text>Emergency Contact Name: {data.emname}</Text>
+        <Text>Emergency Contact Phone Number: {data.emphone}</Text>
+        <Text>Medical Aid Name: {data.medname}</Text>
+        <Text>Medical Aid Number: {data.mednumber}</Text>
+        <Text>Allergies: {data.allergies}</Text>
+        <Text>Blood Group: {data.bloodgroup}</Text>
+        <Text>Any known pre-existing medical conditions: {data.conditions}</Text>
+        <Text>Doctors Name: {data.doctor}</Text>
+    );
   }
 
-
-//  renderNotification(list) {
-//    const result= _.map(list.item, function(value, key) {
-//       key+': '+value
-//    }
-//  }
-
   render() {
-    console.log('here',this.state);
     return (
       <Card>
-        <Text>Hello</Text>
         {this.renderNotification(this.props.data)}
       </Card>
     );

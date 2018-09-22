@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Button, CardSection, Card } from './common/';
+import { Button, CardSection, HeaderWithImage } from './common/';
 import { Actions } from 'react-native-router-flux';
 import { getInfo, transaction } from '../utils/eosjs-client';
 
@@ -12,7 +12,7 @@ class LandingPage extends Component {
     }
 
     onRevokePress() {
-        
+        Actions.revokeAccess();
     }
 
     onAuditPress() {
@@ -26,6 +26,7 @@ class LandingPage extends Component {
     render() {
         return (
         <View>
+
             <CardSection>
                 <Button onPress={this.onGrantPress.bind(this)}>
                     Grant Access
@@ -40,7 +41,7 @@ class LandingPage extends Component {
 
             <CardSection>
                 <Button onPress={this.onAuditPress.bind(this)}>
-                    Audit Summary
+                    Permissions
                 </Button>
             </CardSection>
         </View>

@@ -7,6 +7,9 @@ using namespace eosio;
 
 cleos wallet unlock --password PW5K4EJaofnfmcQzSttnDYkae6ifTTFzdt339hs5kRE6xzuC2LkWi
 
+cleos create account eosio eosguardians EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL
+cleos create account eosio testuser1 EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL
+
 eosiocpp -o /work/guardian/guardian.wast /work/guardian/guardian.cpp
 eosiocpp -g /work/guardian/guardian.abi /work/guardian/guardian.cpp
 cleos set contract eosguardians /work/guardian/ --permission eosguardians
@@ -33,12 +36,24 @@ public:
     // const account_name owner, const account_name key, const std::string msg
     // cleos push action eosguardians upsertrecord '["testuser1","emergencymed","somehash"]' -p testuser1@active
     // Hack using account_name for key
+    /**
+    code - Refers to an account_name where a contract has been published.
+    scope - An account_name that the data in question belongs to.
+    table_name - The name of the table that is stored in memory.
+    */
+
     /// @abi action
     void upsertrecord( const account_name user, const account_name key, const std::string msg ) {
         require_auth( user );
         print( "upsertrecord, ", name{user}, ", ", name{key}, ", ", msg );
 
-        // Insert 
+        // Insert
+     /*data_record_index data_records(_self, user);  //code, scope
+
+      data_records.emplace(_self, [&]( auto& g ) {
+        g.user = user;
+        g.msg = msg;
+      });*/
     }
 
     // cleos push action eosguardians deleterecord '["testuser1","emergencymed"]' -p testuser1@active
@@ -61,12 +76,12 @@ public:
         require_auth( requestor );
         print( "requestacces, ", name{user}, ", ", name{key}, ", ", name{requestor} );
 
-        auth_index authorizations(user, key);
+       /* auth_index authorizations(user, key);
         auto auth = authorizations.find(key);
         if (auth != authorizations.end()) {
             print( "Record not found");
 
-        }
+        }*/
 
 /*
        colourrule_index colourrules(_self, colour);
@@ -97,18 +112,20 @@ public:
 
 
 
-    /// @abi table data_records i64
-    struct data_records {
+    /// @ abi table data_records i64
+   /* struct data_records {
         uint64_t     key;
         account_name user;
-        std::string  msg; // {"firstname":"Rory",.....
+        std::string  msg; 
 
         auto primary_key() const { return key; }
 
         EOSLIB_SERIALIZE( data_records, ( user )( key )( msg ) )
     };
 
-    /// @abi table data_grants i64
+     typedef eosio::multi_index< N(data_records), data_records> data_record_index;
+
+    /// @ abi table data_grants i64
     struct data_grants {
         uint64_t     key;
         account_name user;
@@ -123,7 +140,7 @@ public:
     };
 
     typedef eosio::multi_index< N(data_grants), data_grants> auth_index;
-
+*/
 
 
 

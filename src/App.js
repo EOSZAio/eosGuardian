@@ -7,6 +7,17 @@ import Router from './router';
 import reducers from './reducers';
 
 class App extends Component {
+  const userinit = {
+    dataKey: '',
+    data: ''
+  };
+
+  const init = {
+    userId: '',
+    phone: '',
+    shift: ''
+  };
+
     componentWillMount() {
         const config = {
             apiKey: 'AIzaSyC58VbKdzRQ78axW0mJhhLSfhlzaNArPbM',
@@ -19,7 +30,6 @@ class App extends Component {
 
           firebase.initializeApp(config);
     }
-
 
     render() {
         const store = createStore(reducers, {}, applyMiddleware(thunk));

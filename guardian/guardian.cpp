@@ -43,17 +43,30 @@ public:
     */
 
     /// @abi action
-    void upsertrecord( const account_name user, const account_name key, const std::string msg ) {
+    void eraseTable(const account_name user) {
+        data_record_index data_records(_self, user);
+        auto data_record_by_user = data_records.get_user<N(byuser)>();
+        
+        for(const auto& record : account_by_id_index) {
+            //account_by_id_index.erase(record); //this does not work :(
+            data_records.erase(record);
+        }
+    }
+
+
+    /// @abi action
+    void upsertrecord( const account_name user, const account_name field, const std::string msg ) {
         require_auth( user );
-        print( "upsertrecord, ", name{user}, ", ", name{key}, ", ", msg );
+        print( "upsertrecord, ", name{user}, ", ", name{field}, ", ", msg );
 
         // Insert
-     /*data_record_index data_records(_self, user);  //code, scope
+      data_record_index data_records(_self, user);  //code, scope
 
       data_records.emplace(_self, [&]( auto& g ) {
+        g.field = field;
         g.user = user;
         g.msg = msg;
-      });*/
+      });
     }
 
     // cleos push action eosguardians deleterecord '["testuser1","emergencymed"]' -p testuser1@active
@@ -76,12 +89,12 @@ public:
         require_auth( requestor );
         print( "requestacces, ", name{user}, ", ", name{key}, ", ", name{requestor} );
 
-       /* auth_index authorizations(user, key);
+        auth_index authorizations(user, key);
         auto auth = authorizations.find(key);
         if (auth != authorizations.end()) {
             print( "Record not found");
 
-        }*/
+        }
 
 /*
        colourrule_index colourrules(_self, colour);
@@ -112,20 +125,25 @@ public:
 
 
 
-    /// @ abi table data_records i64
-   /* struct data_records {
+    /// @abi table data_records i64
+    struct data_records {
         uint64_t     key;
+        account_name field;
         account_name user;
         std::string  msg; 
 
         auto primary_key() const { return key; }
+        account_name get_user()const {return user;}
 
-        EOSLIB_SERIALIZE( data_records, ( user )( key )( msg ) )
+        EOSLIB_SERIALIZE( data_records, ( user )( key )( field )( msg ) )
     };
 
      typedef eosio::multi_index< N(data_records), data_records> data_record_index;
+     typedef eosio::multi_index< N(data_records), data_records,
+      indexed_by<N(byuser), const_mem_fun<data_records,account_name, &data_records::get_user>> > data_records_by_user;
 
-    /// @ abi table data_grants i64
+
+    /// @abi table data_grants i64
     struct data_grants {
         uint64_t     key;
         account_name user;
@@ -138,12 +156,7 @@ public:
 
         EOSLIB_SERIALIZE( data_grants, ( user )( key )( requestor )( status )( datefrom )( dateto) )
     };
-
     typedef eosio::multi_index< N(data_grants), data_grants> auth_index;
-*/
-
-
-
 };
 
 EOSIO_ABI( guardian, (hi)(upsertrecord)(deleterecord)(readrecord)(requestacces)(grantaccess)(revokeaccess) )

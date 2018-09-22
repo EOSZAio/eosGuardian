@@ -9,12 +9,12 @@ import reducers from './reducers';
 class App extends Component {
     componentWillMount() {
         const config = {
-            apiKey: 'AIzaSyB9OcMpGYlsZQt2JWDSpOrtxYMA2pohFxk',
-            authDomain: 'manager-a5bff.firebaseapp.com',
-            databaseURL: 'https://manager-a5bff.firebaseio.com',
-            projectId: 'manager-a5bff',
-            storageBucket: '',
-            messagingSenderId: '838442250756'
+            apiKey: 'AIzaSyC58VbKdzRQ78axW0mJhhLSfhlzaNArPbM',
+            authDomain: 'eosguardian-50c98.firebaseapp.com',
+            databaseURL: 'https://eosguardian-50c98.firebaseio.com',
+            projectId: 'eosguardian-50c98',
+            storageBucket: 'eosguardian-50c98.appspot.com',
+            messagingSenderId: '746350971956'
           };
 
           firebase.initializeApp(config);

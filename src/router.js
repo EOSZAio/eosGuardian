@@ -1,7 +1,8 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
-import HelloWorld from './components/HelloWorld';
+import LandingPage from './components/LandingPage';
+import GrantAccess from './components/GrantAccess';
 
 
 const RouterComponent = () => {
@@ -12,18 +13,25 @@ const RouterComponent = () => {
                     <Scene 
                         key="login" 
                         component={LoginForm} 
-                        title="Please Login" 
+                        title="Please Login"
                         initial
-                    
                     />
                 </Scene>
                 <Scene key="main">
-                     <Scene key="helloWorld"
+                     <Scene key="landingPage"
                         //rightTitle="Add"
                         //onRight={() => Actions.addAccount()}
-                        component={HelloWorld}
-                        title="Hello World!"
+                        component={LandingPage}
+                        title="eosGuardian"
                     />
+
+                    <Scene key="grantAccess"
+                        //rightTitle="Add"
+                        //onRight={() => Actions.addAccount()}
+                        component={GrantAccess}
+                        title="Grant Access"
+                    />
+
                 </Scene>
             </Scene>
         </Router>

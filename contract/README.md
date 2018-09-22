@@ -103,6 +103,29 @@ Check blockchain
 docker logs -f nodeos
 ```
 
+### Smart contrsact actions
+
+####upsertrecord
+
+| Field | Description |
+| ------------- | --------------|
+| owner | EOS account name of data owner |
+| key | Data key |
+| hash | Hash or index of data stored off-chain |
+
+
+####deleterecord
+
+####readrecord
+
+####requestacces
+
+NB Check spelling (1 's')
+
+####grantaccess
+
+####revokeaccess
+
 
 
 

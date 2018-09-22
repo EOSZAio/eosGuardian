@@ -37,6 +37,8 @@ public:
     void upsertrecord( const account_name user, const account_name key, const std::string msg ) {
         require_auth( user );
         print( "upsertrecord, ", name{user}, ", ", name{key}, ", ", msg );
+
+        // Insert 
     }
 
     // cleos push action eosguardians deleterecord '["testuser1","emergencymed"]' -p testuser1@active
@@ -58,6 +60,25 @@ public:
     void requestacces( const account_name user, const account_name key, const account_name requestor ) {
         require_auth( requestor );
         print( "requestacces, ", name{user}, ", ", name{key}, ", ", name{requestor} );
+
+        auth_index authorizations(user, key);
+        auto auth = authorizations.find(key);
+        if (auth != authorizations.end()) {
+            print( "Record not found");
+
+        }
+
+/*
+       colourrule_index colourrules(_self, colour);
+      auto rule = colourrules.find(rule_id);
+      eosio_assert( rule != colourrules.end(), "Rule not found" );
+
+      colourrules.modify(rule, 0, [&]( auto& r ) {
+        r.is_active = is_active;
+      });
+
+ */
+
     }
 
     // cleos push action eosguardians grantaccess '["testuser1","emergencymed","testuser2"]' -p testuser2@active
@@ -73,6 +94,38 @@ public:
         require_auth( user );
         print( "revokeaccess, ", name{user}, ", ", name{key}, ", ", name{requestor} );
     }
+
+
+
+    /// @abi table data_records i64
+    struct data_records {
+        uint64_t     key;
+        account_name user;
+        std::string  msg; // {"firstname":"Rory",.....
+
+        auto primary_key() const { return key; }
+
+        EOSLIB_SERIALIZE( data_records, ( user )( key )( msg ) )
+    };
+
+    /// @abi table data_grants i64
+    struct data_grants {
+        uint64_t     key;
+        account_name user;
+        account_name requestor;
+        std::string  status;
+        uint64_t     datefrom;
+        uint64_t     dateto;
+
+        auto primary_key() const { return key; }
+
+        EOSLIB_SERIALIZE( data_grants, ( user )( key )( requestor )( status )( datefrom )( dateto) )
+    };
+
+    typedef eosio::multi_index< N(data_grants), data_grants> auth_index;
+
+
+
 
 };
 

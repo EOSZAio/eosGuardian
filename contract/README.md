@@ -23,6 +23,44 @@ Create user account
 ```
 cleos create account eosio user EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL
 ```
+
+### EOS guardian
+
+```
+cleos create account eosio eosguardians EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL
+```
+
+## Compile the smart contract
+
+Next, we need to generate a WASM file. A WASM file is a compiled smart contract ready to be uploded to EOSIO network.
+
+```
+eosiocpp -o /work/guardian/guardian.wast /work/guardian/guardian.cpp
+```
+
+Please note the path to the files is within Docker container, not your host machine.
+
+We now need to generate an ABI file:
+
+```
+eosiocpp -g /work/guardian/guardian.abi /work/guardian/guardian.cpp
+```
+
+Congratulations! You have created your first smart contract! Lets upload this contract to the blockchain:
+
+```
+cleos set contract eosguardians /work/guardian/ --permission eosguardians
+```
+
+Run the transaction:
+
+```
+cleos push action eosguardians hi '["eosguardians"]' -p eosguardians@active
+```
+
+
+
+
 ### More test users
 
 Add a couple more test accounts for use in our app.
@@ -34,6 +72,8 @@ cleos create account eosio testuser3 EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMq
 cleos create account eosio testuser4 EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL
 cleos create account eosio testuser5 EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL
 ```
+
+
 
 ### Smart contract
 
@@ -62,6 +102,22 @@ Check blockchain
 ```
 docker logs -f nodeos
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### EOSIO token contract
 
@@ -120,4 +176,3 @@ cleos push action user.token transfer '[ "testuser1", "testuser2", "50.00 ZAR", 
 cleos get table user.token testuser1 accounts
 cleos get table user.token testuser2 accounts
 ```
-

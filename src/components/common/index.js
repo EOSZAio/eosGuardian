@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './RedButton';
 export * from './Header';
 export * from './HeaderWithImage';
 export * from './CardSection';

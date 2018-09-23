@@ -111,8 +111,8 @@ const styles = {
       marginRight: 10
     },
     thumbnailStyle: {
-      height: 50,
-      width: 50,
+      height: 75,
+      width: 75,
       borderRadius: 5
     },
     conentStyle: {

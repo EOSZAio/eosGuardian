@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Button, Header, Card, CardSection, ActionSucceeded } from './common';
+import { Button, RedButton, Header, Card, CardSection, ActionSucceeded } from './common';
 import { transaction } from '../utils/eosjs-client';
 
 class ViewNotification extends Component {
@@ -69,9 +69,9 @@ class ViewNotification extends Component {
           </CardSection>
 
           <CardSection>
-            <Button onPress={this.onReject.bind(this)}>
+            <RedButton onPress={this.onReject.bind(this)} style={{ color: '#ff0000' }}>
               Reject
-            </Button>
+            </RedButton>
           </CardSection>
 
           <ActionSucceeded

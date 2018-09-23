@@ -5,31 +5,8 @@ import { Actions } from 'react-native-router-flux';
 import { getInfo, transaction } from '../utils/eosjs-client';
 import ViewNotification from './ViewNotification';
 
-class LandingPage extends Component {
-<<<<<<< HEAD
-
-    componentWillMount() {
-        getInfo().then(info => {
-            console.log("data",info);
-          });
-
-          const jdata={
-            user: "testuser1",
-            msg_id: 2,
-            data: { "access": "Cape Epic"} ,
-            field: "medical"
-        }
-
-
-          transaction("testuser1", "upsert", jdata).then(result => {
-            console.log("data",result);
-          }).catch(err => {
-            console.log("data",err);
-          })
-    }
-=======
+class LandingPage2 extends Component {
   state = { addDone: false };
->>>>>>> lucky-22sep-1529
 
     onGrantPress() {
         //const { email, password } = this.props;
@@ -43,11 +20,8 @@ class LandingPage extends Component {
 
     checkDone() {
 
-<<<<<<< HEAD
-=======
     }
 
->>>>>>> lucky-22sep-1529
     render() {
         return (
         <View>
@@ -68,11 +42,14 @@ class LandingPage extends Component {
                 <Text>Granted: 05/12/2017 Expires: 04/11/2020</Text>
             </Card>
 
-            {this.checkDone()}
+            <Card>
+                <Text>Cape Epic (Type: Emergency Details)</Text>
+                <Text>Granted: 24/09/2018 Expires: 25/03/2019</Text>
+            </Card>
 
         </View>
         );
     }
 }
 
-export default LandingPage;
+export default LandingPage2;

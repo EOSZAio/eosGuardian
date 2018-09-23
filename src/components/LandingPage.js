@@ -5,6 +5,27 @@ import { Actions } from 'react-native-router-flux';
 import { getInfo, transaction } from '../utils/eosjs-client';
 
 class LandingPage extends Component {
+
+    componentWillMount() {
+        getInfo().then(info => {
+            console.log("data",info);
+          });
+
+          const jdata={
+            user: "testuser1",
+            msg_id: 2,
+            data: { "access": "Cape Epic"} ,
+            field: "medical"
+        }
+
+
+          transaction("testuser1", "upsert", jdata).then(result => {
+            console.log("data",result);
+          }).catch(err => {
+            console.log("data",err);
+          })
+    }
+
     onGrantPress() {
         //const { email, password } = this.props;
         //this.props.loginUser({ email, password });
@@ -17,10 +38,6 @@ class LandingPage extends Component {
 
     onAuditPress() {
         
-    }
-
-    componentWillMount() {
-    
     }
 
     render() {

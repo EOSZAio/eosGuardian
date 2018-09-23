@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Header, Card, CardSection, ActionSucceeded } from './common';
+import { transaction } from '../utils/eosjs-client';
 
 class ViewNotification extends Component {
   state = { showModal: false };
@@ -17,8 +18,21 @@ class ViewNotification extends Component {
   }
 
   onAccept() {
-    //talk to blockchain here.
-    this.setState({ showModal: !this.state.showModal }); // show action succeeded!
+
+    const jdata = {
+      user: "testuser1",
+      msg_id: 2,  //this is unique key, if we want to add a new record we need to increment this.
+      data: this.props.notification,
+      field: "medical"
+  };
+    //insert new permission to blockchain here
+    transaction("testuser1", "upsert", jdata).then(result => {
+      this.setState({ showModal: !this.state.showModal }); // show action succeeded!
+    }).catch(err => {
+      console.log("data",err);
+    });
+
+    
   }
 
   render() {

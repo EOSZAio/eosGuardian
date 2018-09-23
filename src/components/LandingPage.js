@@ -6,14 +6,14 @@ import { getInfo, transaction } from '../utils/eosjs-client';
 import ViewNotification from './ViewNotification';
 
 class LandingPage extends Component {
-<<<<<<< HEAD
+   state = { addDone: false };
 
     componentWillMount() {
         getInfo().then(info => {
             console.log("data",info);
           });
 
-          const jdata={
+         /* const jdata={
             user: "testuser1",
             msg_id: 2,
             data: { "access": "Cape Epic"} ,
@@ -25,11 +25,9 @@ class LandingPage extends Component {
             console.log("data",result);
           }).catch(err => {
             console.log("data",err);
-          })
+          });*/
     }
-=======
-  state = { addDone: false };
->>>>>>> lucky-22sep-1529
+  
 
     onGrantPress() {
         //const { email, password } = this.props;
@@ -42,12 +40,8 @@ class LandingPage extends Component {
     }
 
     checkDone() {
-
-<<<<<<< HEAD
-=======
     }
 
->>>>>>> lucky-22sep-1529
     render() {
         return (
         <View>

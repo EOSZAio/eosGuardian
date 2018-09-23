@@ -22,6 +22,7 @@ export function eos() {
 
 
 export function getInfo() {
+  //debugger;
 	const net = eos().getInfo({}).then(info => {
 		return info;
 	});
@@ -38,7 +39,7 @@ export const transaction = async(actor, action, data) =>
    return await eos().transaction({
     actions: [
       {
-        account: 'hello.code',
+        account: 'eosguardians',
         name: action,
         authorization: [
           {

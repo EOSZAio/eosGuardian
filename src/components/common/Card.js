@@ -13,17 +13,18 @@ const styles = {
     container: {
         borderWidth : 1,
         borderRadius: 2,
-        borderColor: '#DDD',
-        borderBottomWidth: 0,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
+        borderColor: '#AAA',
+        borderBottomWidth: 1,
+//        shadowColor: '#AAA',
+//        shadowOffset: { width: 0, height: 2 },
+//        shadowOpacity: 0.2,
+//        shadowRadius: 2,
         elevation: 1,
         marginLeft: 5,
         marginRight: 5,
-        marginTop: 10
+        marginTop: 8,
+        padding: 5
     }
 };
 
-export {Card};
+export { Card };

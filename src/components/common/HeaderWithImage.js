@@ -11,7 +11,7 @@ const HeaderWithImage = (props) => {
             <Image style={thumbNail} source={require('../../../resources/bell.jpg')} />
         </View>
    );
-   
+
    /*
    return (
         <View style = {style.viewStyle}>
@@ -23,20 +23,20 @@ const HeaderWithImage = (props) => {
 
 const styles = {
     viewStyle: {
-        backgroundColor: '#F8F8F8',
+        backgroundColor: '#148ECE',
         justifyContent: 'center',
         alignItems: 'center',
         height: 60,
-        paddtingTop: 15,
+        paddingTop: 15,
         shadowColor:'#000',
         shadowOffset: { width:0, height:2},
         shadowOpacity: 0.2
     },
     textStyle: {
-        fontSize: 20
+      fontSize: 20
     },
     thumbNail: {
-
+      resizeMode: 'contain'
     }
 };
 

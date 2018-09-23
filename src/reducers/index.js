@@ -9,6 +9,6 @@ export default combineReducers({
     auth: AuthReducer,
     accountForm: AccountFormReducer,
     accounts: AccountsReducer,
-    blockChainData: BlockChainReducer
-    notification: DataListReducer;
+    blockChainData: BlockChainReducer,
+    notification: DataListReducer
 });

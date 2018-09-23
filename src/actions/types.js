@@ -17,8 +17,3 @@ export const ACCOUNT_ADD = 'account_add';
 export const CHECK_ACCOUNT_ON_BC = 'check_account_on_bc';
 export const CHECK_ACCOUNT_ON_BC_FAIL = 'check_account_on_bc_fail';
 export const GET_ACCOUNT_BC_DATA_SUCCESS = 'get_account_bc_data_success';
-
-
-
-
-

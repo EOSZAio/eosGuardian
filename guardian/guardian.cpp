@@ -9,10 +9,16 @@ cleos wallet unlock --password PW5K4EJaofnfmcQzSttnDYkae6ifTTFzdt339hs5kRE6xzuC2
 
 cleos create account eosio eosguardians EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL
 cleos create account eosio testuser1 EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL
+cleos create account eosio user.token EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL EOS6Bq9j8QoLRLbU2cgyHDAKMhpHpxcTcCGQDYwyHMqKTUXPFUYAL
 
 eosiocpp -o /work/guardian/guardian.wast /work/guardian/guardian.cpp
 eosiocpp -g /work/guardian/guardian.abi /work/guardian/guardian.cpp
-cleos set contract eosguardians /work/guardian/ --permission eosguardians
+cleos set contract eosguardians ../guardian/ -p eosguardians@active
+
+****TOKEN
+cleos set contract user.token ../eosio.token -p user.token@active
+cleos push action user.token create '{"issuer":"eosio", "maximum_supply":"1000000000.00 ZAR"}' -p user.token
+cleos push action user.token issue '[ "testuser1", "55.00 ZAR", "memo" ]' -p eosio
 
 cleos push action eosguardians upsertrecord '["testuser1","emergencymed","somehash"]' -p testuser1@active
 cleos push action eosguardians deleterecord '["testuser1","emergencymed"]' -p testuser1@active

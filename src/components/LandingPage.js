@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
 import { Button, Card, Header, CardSection, HeaderWithImage } from './common/';
 import { Actions } from 'react-native-router-flux';
 import { getInfo, transaction } from '../utils/eosjs-client';
 import ViewNotification from './ViewNotification';
+import { pickerGetBalance } from '../actions';
 
 class LandingPage extends Component {
-   state = { addDone: false };
-
     componentWillMount() {
+
         getInfo().then(info => {
             console.log("data",info);
           });
+        this.props.pickerGetBalance({ account: 'testuser1' });
 
          /* const jdata={
             user: "testuser1",
@@ -27,7 +29,6 @@ class LandingPage extends Component {
             console.log("data",err);
           });*/
     }
-  
 
     onGrantPress() {
         //const { email, password } = this.props;
@@ -45,6 +46,12 @@ class LandingPage extends Component {
     render() {
         return (
         <View>
+            <Header headerText={"PROFILE"} />
+            <Card>
+              <Text>User: Rory Mapstone</Text>
+              <Text>Token Balance: {this.picker.balance}-</Text>
+            </Card>
+
             <Header headerText={"ACCEPTED REQUESTS"} />
 
             <Card>
@@ -69,4 +76,10 @@ class LandingPage extends Component {
     }
 }
 
-export default LandingPage;
+const mapStateToProps = state => {
+  const picker = state.picker;
+
+  return { picker };
+};
+
+export default connect(mapStateToProps, { pickerGetBalance })(LandingPage);

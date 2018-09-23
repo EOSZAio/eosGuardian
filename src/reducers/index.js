@@ -4,11 +4,13 @@ import AccountsReducer from './AccountsReducer';
 import AccountFormReducer from './AccountFormReducer';
 import BlockChainReducer from './BlockChainReducer';
 import DataListReducer from './DataListReducer';
+import PickerReducer from './PickerReducer';
 
 export default combineReducers({
     auth: AuthReducer,
     accountForm: AccountFormReducer,
     accounts: AccountsReducer,
     blockChainData: BlockChainReducer,
-    notification: DataListReducer
+    notification: DataListReducer,
+    picker: PickerReducer
 });

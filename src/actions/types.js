@@ -17,3 +17,8 @@ export const ACCOUNT_ADD = 'account_add';
 export const CHECK_ACCOUNT_ON_BC = 'check_account_on_bc';
 export const CHECK_ACCOUNT_ON_BC_FAIL = 'check_account_on_bc_fail';
 export const GET_ACCOUNT_BC_DATA_SUCCESS = 'get_account_bc_data_success';
+
+export const PICKER_CHANGE = 'picker_change';
+export const PICKER_CREATE = 'picker_create';
+export const PICKER_SAVE_SUCCESS = 'picker_save_success';
+export const PICKERS_FETCH_SUCCESS = 'picker_fetch_success';

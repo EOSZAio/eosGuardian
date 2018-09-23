@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Button, Card, CardSection, ActionSucceeded } from './common';
+import { Button, Header, Card, CardSection, ActionSucceeded } from './common';
 
 class ViewNotification extends Component {
   state = { showModal: false };
@@ -11,11 +11,23 @@ class ViewNotification extends Component {
     Actions.landingPage();
   }
 
+  onSuccess() {
+    this.setState({ showModal: false });
+    Actions.landingPage2();
+  }
+
+  onAccept() {
+    //talk to blockchain here.
+    this.setState({ showModal: !this.state.showModal }); // show action succeeded!
+  }
+
   render() {
     const { headerStyle, detailStyle } = styles;
     return (
       <View>
-        <CardSection>
+        <Header headerText={"NEW ACCESS REQUEST"} />
+        <Header headerText={"Type: Emergency Details"} />
+      <CardSection>
           <Card>
             <Text>Access requested by: {this.props.notification.access}</Text>
             <Text>Date from: {this.props.notification.datefrom}</Text>
@@ -37,8 +49,8 @@ class ViewNotification extends Component {
         </CardSection>
 
           <CardSection>
-            <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
-              Accept
+            <Button onPress={this.onAccept.bind(this)}>
+              Approve
             </Button>
           </CardSection>
 
@@ -50,7 +62,7 @@ class ViewNotification extends Component {
 
           <ActionSucceeded
           visible={this.state.showModal}
-          onAccept={this.onReject.bind(this)}
+          onAccept={this.onSuccess.bind(this)}
           >
             Access Granted
           </ActionSucceeded>
@@ -61,6 +73,7 @@ class ViewNotification extends Component {
 
 const styles = {
   headerStyle: {
+      fontSize: 20,
       flex: 1,
       flexDirection: 'column'
   },

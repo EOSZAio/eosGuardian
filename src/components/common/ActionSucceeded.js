@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View, Modal } from 'react-native';
+import { Text, View, Modal, Image } from 'react-native';
 import { CardSection } from './CardSection';
 import { Button } from './Button';
 
 const ActionSucceeded = ({ children, visible, onAccept }) => {
-  const { containerStyle, textStyle, cardSectionStyle } = styles;
+  const { containerStyle, textStyle, cardSectionStyle, thumbNail } = styles;
 
   return (
     <Modal
@@ -19,6 +19,9 @@ const ActionSucceeded = ({ children, visible, onAccept }) => {
           <Text style={textStyle}>
             {children}
           </Text>
+        </CardSection>
+        <CardSection>
+          <Image style={thumbNail} source={require('../../../resources/accepted.png')} />
         </CardSection>
 
         <CardSection>
@@ -36,6 +39,7 @@ const styles = {
   },
   textStyle: {
     flex: 1,
+    flexDirection: 'column',
     fontSize: 18,
     textAlign: 'center',
     lineHeight: 40,
@@ -45,6 +49,14 @@ const styles = {
     backgroundColor: 'rgba(0, 0, 0, 0.75)',
     position: 'relative',
     flex: 1,
+    justifyContent: 'center'
+  },
+  thumbNail: {
+    flex: 1,
+    resizeMode: 'contain',
+    width: 80,
+    height: 80,
+    alignItems: 'center',
     justifyContent: 'center'
   }
 };

@@ -3,16 +3,16 @@ import { View, Image, Text } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import LandingPage from './components/LandingPage';
+import LandingPage2 from './components/LandingPage2';
 import GrantAccess from './components/GrantAccess';
-<<<<<<< HEAD
-import ViewNotification from './components/ViewNotification';
-=======
 import RevokeAccess from './components/RevokeAccess';
->>>>>>> andreas-branch
+import ViewNotification from './components/ViewNotification';
 
 const RouterComponent = () => {
+  //                        renderTitle={() => { return <AppLogo />; }}
+
     const AppLogo = () => {
-        return (  
+        return (
           <View style={styles.header}>
             <View style={styles.text}>
                 <Text style={styles.font}>EOS Guardian</Text>
@@ -39,28 +39,23 @@ const RouterComponent = () => {
                     />
                 </Scene>
                 <Scene key="main">
-                     <Scene key="landingPage"
-                        component={LandingPage}
-                        renderTitle={() => { return <AppLogo />; }}
+                    <Scene key="landingPage"
+                      component={LandingPage}
+                      rightTitle="Add"
+                      onRight={() => Actions.ViewNotification()}
+                      title="EOS Guardian"
                     />
 
-                    <Scene key="grantAccess"
-                        component={GrantAccess}
+                    <Scene key="ViewNotification"
+                        component={ViewNotification}
                         title="Grant Access"
                     />
 
-<<<<<<< HEAD
-                    <Scene key="ViewNotification"
-                        //rightTitle="Add"
-                        //onRight={() => Actions.addAccount()}
-                        component={ViewNotification}
-                        title="Notification"
-=======
-                    <Scene key="revokeAccess"
-                        component={RevokeAccess}
-                        title="Revoke Access"
->>>>>>> andreas-branch
+                    <Scene key="landingPage2"
+                      component={LandingPage2}
+                      title="EOS Guardian"
                     />
+
 
                 </Scene>
             </Scene>
@@ -70,8 +65,11 @@ const RouterComponent = () => {
 
 
 const styles = {
+    background: {
+      backgroundColor: '#148ECE'
+    },
     header: {
-      backgroundColor: '#A4C400',
+      backgroundColor: '#148ECE',
       flexDirection: 'row',
       padding: 10,
       shadowColor: '#000',

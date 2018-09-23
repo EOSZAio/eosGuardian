@@ -10,7 +10,7 @@ const Header = (props) => {
             <Text style={textStyle}>{props.headerText}</Text>
         </View>
    );
-   
+
    /*
    return (
         <View style = {style.viewStyle}>
@@ -25,14 +25,15 @@ const styles = {
         backgroundColor: '#F8F8F8',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 60,
-        paddtingTop: 15,
-        shadowColor:'#000',
-        shadowOffset: { width:0, height:2},
+        height: 38,
+        paddingTop: 5,
+        paddingBottom: 4,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2
     },
     textStyle: {
-        fontSize: 20
+        fontSize: 18
     }
 };
 

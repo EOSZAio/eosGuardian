@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { getInfo, transaction } from '../utils/eosjs-client';
 import ViewNotification from './ViewNotification';
 
-class LandingPage extends Component {
+class LandingPage2 extends Component {
   state = { addDone: false };
 
     onGrantPress() {
@@ -42,11 +42,14 @@ class LandingPage extends Component {
                 <Text>Granted: 05/12/2017 Expires: 04/11/2020</Text>
             </Card>
 
-            {this.checkDone()}
+            <Card>
+                <Text>Cape Epic (Type: Emergency Details)</Text>
+                <Text>Granted: 24/09/2018 Expires: 25/03/2019</Text>
+            </Card>
 
         </View>
         );
     }
 }
 
-export default LandingPage;
+export default LandingPage2;

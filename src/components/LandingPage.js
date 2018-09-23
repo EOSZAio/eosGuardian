@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { Button, Card, Header, CardSection, HeaderWithImage } from './common/';
 import { Actions } from 'react-native-router-flux';
 import { getInfo, transaction } from '../utils/eosjs-client';
@@ -44,13 +44,29 @@ class LandingPage extends Component {
     }
 
     render() {
+        const { name, image, account, balance } = this.props.picker;
+        const  {
+            thumbnailContainerStyle,
+            thumbnailStyle,
+            conentStyle,
+            titleStyle
+        } = styles;
         return (
         <View>
             <Header headerText={"PROFILE"} />
-            <Card>
-              <Text>User: Rory Mapstone</Text>
-              <Text>Token Balance: {this.picker.balance}-</Text>
-            </Card>
+             <CardSection>
+                <View style={thumbnailContainerStyle}>
+                    <Image
+                    style={thumbnailStyle}
+                    source={{ uri: 'https://mytribez.com/images/975aa59e-5e0a-4d50-93cb-7189918676a6.png' }}
+                    />
+                </View>
+                <View style={conentStyle}>
+                    <Text style={titleStyle}>Account: {name}</Text>
+                    <Text style={titleStyle}>Status: Gold member</Text>
+                    <Text style={titleStyle}>Balance: {(balance ? balance : '$0.00')}</Text>
+                </View>
+            </CardSection>
 
             <Header headerText={"ACCEPTED REQUESTS"} />
 
@@ -81,5 +97,32 @@ const mapStateToProps = state => {
 
   return { picker };
 };
+
+const styles = {
+    thumbnailContainerStyle: {
+      justifyContent: 'center',
+      alignContent: 'center',
+      marginLeft: 10,
+      marginRight: 10
+    },
+    thumbnailStyle: {
+      height: 75,
+      width: 75,
+      borderRadius: 5
+    },
+    thumbnailStyle2: {
+        height: 100,
+        width: 100,
+        borderRadius: 5
+      },
+    conentStyle: {
+      flexDirection: 'column',
+      justifyContent: 'space-around'
+    },
+    titleStyle: {
+      fontSize: 18,
+      paddingLeft: 5
+    }
+  };
 
 export default connect(mapStateToProps, { pickerGetBalance })(LandingPage);

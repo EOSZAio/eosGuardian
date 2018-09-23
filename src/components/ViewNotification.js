@@ -21,18 +21,18 @@ class ViewNotification extends Component {
 
     const jdata = {
       user: "testuser1",
-      msg_id: 2,  //this is unique key, if we want to add a new record we need to increment this.
+      msg_id: 6,  //this is unique key, if we want to add a new record we need to increment this.
       data: this.props.notification,
       field: "medical"
   };
     //insert new permission to blockchain here
-//    transaction("testuser1", "upsert", jdata).then(result => {
-//      this.setState({ showModal: !this.state.showModal }); // show action succeeded!
-//    }).catch(err => {
-//      console.log("data",err);
-//    });
+    transaction("testuser1", "upsert", jdata).then(result => {
+      this.setState({ showModal: !this.state.showModal }); // show action succeeded!
+    }).catch(err => {
+      console.log("data",err);
+    });
 // following only if node not running
-      this.setState({ showModal: !this.state.showModal });
+      //this.setState({ showModal: !this.state.showModal });
   }
 
   render() {

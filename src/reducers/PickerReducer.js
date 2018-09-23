@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  name: 'Test',
+  name: 'testuser1',
   image: '',
   account: '',
   owner_private: '',

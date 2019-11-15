@@ -26,13 +26,13 @@ class ViewNotification extends Component {
       field: "medical"
   };
     //insert new permission to blockchain here
-    transaction("testuser1", "upsert", jdata).then(result => {
+    /*transaction("testuser1", "upsert", jdata).then(result => {
       this.setState({ showModal: !this.state.showModal }); // show action succeeded!
     }).catch(err => {
       console.log("data",err);
-    });
+    });*/
 // following only if node not running
-      //this.setState({ showModal: !this.state.showModal });
+      this.setState({ showModal: !this.state.showModal });
   }
 
   render() {
